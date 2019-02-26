@@ -4,13 +4,16 @@ namespace Flipping.Models
     public class Transaction
     {
 
-        public Transaction(string name, int amount, int broughtAt, int soldAt = 0, int profit = 0)
+        public Transaction(string name, int amount, int broughtAt, int soldAt = 0)
         {
             Name = name;
             Amount = amount;
             BroughtAt = broughtAt;
             SoldAt = soldAt;
-            Profit = profit;
+            if (soldAt > 0)
+            {
+                Profit = (soldAt - broughtAt) * amount; 
+            }
         }
         public string Name { get; set; }
 

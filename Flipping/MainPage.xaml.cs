@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flipping.Models;
+using Flipping.ViewModels;
 using Xamarin.Forms;
 
 namespace Flipping
@@ -13,35 +14,44 @@ namespace Flipping
     {
         public MainPage()
         {
+            BindingContext = new TransactionsViewModel();
             InitializeComponent();
             RenderTransactions();
         }
-        // ViewModel logic to be seperated later
-        private ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>
-        {
-            new Transaction("Combat Potion(2)", 1000, 390),
-            new Transaction("Magic Potion(4)", 5000, 5),
-        };
 
+        
 
         public void RenderTransactions()
         {
-            foreach (Transaction transaction in transactions)
+            var vm = BindingContext as TransactionsViewModel;
+
+            var row = 0;
+            foreach (Transaction transaction in vm.transactions)
             {
-                layout.Children.Add(new Label
+                grid.Children.Add(new Label
                 {
-                    Text = transaction.Name
-                });
-                layout.Children.Add(new Label
+                    Text = transaction.Name,
+                    TextColor = Color.Cyan,
+                }, 0, row);
+                grid.Children.Add(new Label
                 {
                     Text = transaction.Amount.ToString()
-                });
-                layout.Children.Add(new Label
+                }, 1, row);
+                grid.Children.Add(new Label
                 {
-                    Text = transaction.BroughtAt.ToString()
-                });
-            }
+                    Text = transaction.BroughtAt.ToString() + "gp"
+                }, 2, row);
+                grid.Children.Add(new Label
+                {
+                    Text = transaction.SoldAt.ToString() + "gp"
+                }, 3, row);
+                grid.Children.Add(new Label
+                {
+                    Text = transaction.Profit.ToString() + "gp"
+                }, 4, row);
+                row++;
 
+            }
         }
     }
 }
