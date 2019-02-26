@@ -27,10 +27,18 @@ namespace Flipping.ViewModels
         public void SaveToDevice()
         {
             transactions.Add(new Transaction("New item", 100, 10, 20));
+
             var x = 0;
             foreach(Transaction transaction in transactions)
             {
-                Application.Current.Properties[x.ToString()] = transactions[x].Name;
+                string[] values = new string[]
+                {
+                    transactions[x].Name,
+                    transactions[x].Amount.ToString(),
+                    transactions[x].BroughtAt.ToString(),
+                    transactions[x].SoldAt.ToString()
+                };
+                Application.Current.Properties[x.ToString()] =  values;
                 x++;
             }
         }
