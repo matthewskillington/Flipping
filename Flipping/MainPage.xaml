@@ -26,6 +26,8 @@
             Padding="5">
             
         </Grid>
+
+        <Button Text="Add new Flip" Command="{Binding AddCommand}"></Button>
         
     </StackLayout>
 </ContentPage>
