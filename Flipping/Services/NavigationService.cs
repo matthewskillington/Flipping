@@ -1,7 +1,9 @@
-﻿using Flipping.Views;
+﻿using Flipping.ViewModels;
+using Flipping.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Flipping.Services
@@ -15,13 +17,40 @@ namespace Flipping.Services
         public NavigationService()
         {
             _mappings = new Dictionary<Type, Type>();
+            CreatePageViewModelMappings();
         }
 
-        public async void CreateModal<TViewModel>()
+        private void CreatePageViewModelMappings()
         {
-            var page = new AddTransactionModal();
+            _mappings.Add(typeof(AddTransactionModalViewModel), typeof(AddTransactionModal));
+            _mappings.Add(typeof(TransactionsViewModel), typeof(MainPage));
+        }
+
+        async Task CreateModal<TViewModel>()
+        {
+            var page = CreatePage(typeof(TViewModel));
             await CurrentApplication.MainPage.Navigation.PushModalAsync(page);
         }
+        
+        private Page CreatePage(Type type)
+        {
+            Type pageType = GetPageTypeForViewModel(type);
 
+            if (pageType == null)
+            {
+                throw new Exception($"Mapping type for {type} is null in the NavigationService");
+            }
+            Page page = Activator.CreateInstance(pageType) as Page;
+            return page;
+        }
+
+        private Type GetPageTypeForViewModel(Type type)
+        {
+           if (!_mappings.ContainsKey(type))
+            {
+                throw new KeyNotFoundException($"No mapping found for ${type} in the NavigationService");
+            }
+            return _mappings[type];
+        }
     }
 }

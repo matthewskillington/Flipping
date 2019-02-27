@@ -1,4 +1,5 @@
 ﻿using Flipping.Models;
+using Flipping.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,8 +11,12 @@ namespace Flipping.ViewModels
 {
     class TransactionsViewModel : BindableObject
     {
-        public TransactionsViewModel()
+
+        public INavigationService navigationService;
+
+        public TransactionsViewModel(INavigationService _navigationService)
         {
+            navigationService = _navigationService;
         }
 
         public ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>
