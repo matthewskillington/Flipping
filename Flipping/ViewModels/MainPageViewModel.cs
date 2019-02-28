@@ -29,9 +29,17 @@ namespace Flipping.ViewModels
 
         public ICommand AddCommand => new Command(SaveToDevice);
 
-        public void SaveToDevice()
+        public bool isSaving = false;
+
+        public async void SaveToDevice()
         {
-            navigationService.CreateModal<AddTransactionModalViewModel>();
+            if (isSaving)
+            {
+                return;
+            }
+
+            isSaving = true;
+            await navigationService.CreateModal<AddTransactionModalViewModel>();
 
             var x = 0;
             foreach(Transaction transaction in transactions)
@@ -46,6 +54,7 @@ namespace Flipping.ViewModels
                 Application.Current.Properties[x.ToString()] =  values;
                 x++;
             }
+            isSaving = false;
         }
     }
 }
