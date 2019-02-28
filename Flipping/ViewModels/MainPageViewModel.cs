@@ -9,12 +9,12 @@ using Xamarin.Forms;
 
 namespace Flipping.ViewModels
 {
-    class TransactionsViewModel : BindableObject
+    class MainPageViewModel : BindableObject
     {
 
         public INavigationService navigationService;
 
-        public TransactionsViewModel(INavigationService _navigationService)
+        public MainPageViewModel(INavigationService _navigationService)
         {
             navigationService = _navigationService;
         }
@@ -31,7 +31,7 @@ namespace Flipping.ViewModels
 
         public void SaveToDevice()
         {
-            transactions.Add(new Transaction("New item", 100, 10, 20));
+            navigationService.CreateModal<AddTransactionModalViewModel>();
 
             var x = 0;
             foreach(Transaction transaction in transactions)

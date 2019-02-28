@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Flipping.Services
 {
-    public class NavigationService
+    public class NavigationService : INavigationService
     {
         protected Application CurrentApplication => Application.Current;
 
@@ -23,10 +23,10 @@ namespace Flipping.Services
         private void CreatePageViewModelMappings()
         {
             _mappings.Add(typeof(AddTransactionModalViewModel), typeof(AddTransactionModal));
-            _mappings.Add(typeof(TransactionsViewModel), typeof(MainPage));
+            _mappings.Add(typeof(MainPageViewModel), typeof(MainPage));
         }
 
-        async Task CreateModal<TViewModel>()
+        public async Task CreateModal<TViewModel>()
         {
             var page = CreatePage(typeof(TViewModel));
             await CurrentApplication.MainPage.Navigation.PushModalAsync(page);

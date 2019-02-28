@@ -14,10 +14,23 @@ namespace Flipping.Bootstrap
             var builder = new ContainerBuilder();
 
             //ViewModels
-            builder.RegisterType<TransactionsViewModel>();
+            builder.RegisterType<MainPageViewModel>();
             builder.RegisterType<AddTransactionModalViewModel>();
             //Services
             builder.RegisterType<NavigationService>().As<INavigationService>();
+
+            _container = builder.Build();
+        }
+
+
+        public static object Resolve(Type type)
+        {
+            return _container.Resolve(type);
+        }
+
+        public static T resolve<T>()
+        {
+            return _container.Resolve<T>();
         }
     }
 }

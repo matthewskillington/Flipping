@@ -1,11 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utility="clr-namespace:Flipping.Utility;assembly=Flipping"
+             utility:ViewModelLocator.AutoWireViewModel="True"
              x:Class="Flipping.Views.AddTransactionModal">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Add your transaction instance"
-                ></Label>
+        <StackLayout
+            Padding="10">
+            <Label
+                Text="Enter Item Name"></Label>
+            <Entry
+                 Text="{Binding Name, Mode=TwoWay}"></Entry>
+            <Label
+                Text="Enter Amount"></Label>
+            <Entry
+                 Text="{Binding Amount, Mode=TwoWay}"></Entry>
+            <Label
+                Text="Enter Price Paid Each"></Label>
+            <Entry
+                 Text="{Binding BroughtAt, Mode=TwoWay}"></Entry>
+            <Label
+                Text="Enter Sold Price (if applicable)"></Label>
+            <Entry
+                 Text="{Binding SoldAt, Mode=TwoWay}"></Entry>
+
+            <Button
+                Text="Submit"
+                Command="{Binding SubmitCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

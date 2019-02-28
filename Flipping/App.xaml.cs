@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Flipping.Bootstrap;
+using Flipping.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +12,7 @@ namespace Flipping
         public App()
         {
             InitializeComponent();
-
+            AppContainer.RegisterDependencies();
             MainPage = new MainPage();
         }
 

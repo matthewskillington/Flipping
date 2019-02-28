@@ -5,6 +5,6 @@ namespace Flipping.Services
 {
     public interface INavigationService
     {
-        Task CreateModal();
+        Task CreateModal<T>();
     }
 }

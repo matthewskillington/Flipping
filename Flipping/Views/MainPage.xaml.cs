@@ -5,25 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flipping.Models;
+using Flipping.Utility;
 using Flipping.ViewModels;
 using Xamarin.Forms;
 
-namespace Flipping
+namespace Flipping.Views
 {
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
-            BindingContext = new TransactionsViewModel();
             InitializeComponent();
             RenderTransactions();
         }
 
-        
-
         public void RenderTransactions()
         {
-            var vm = BindingContext as TransactionsViewModel;
+            var vm = BindingContext as MainPageViewModel;
 
             var row = 0;
             foreach (Transaction transaction in vm.transactions)
