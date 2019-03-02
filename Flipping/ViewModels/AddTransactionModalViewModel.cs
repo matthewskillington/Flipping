@@ -1,4 +1,5 @@
 ﻿using Flipping.Models;
+using Flipping.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,12 @@ namespace Flipping.ViewModels
 {
     class AddTransactionModalViewModel : BindableObject
     {
+        public ITransactionService _transactionService;
+
+        public AddTransactionModalViewModel(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
 
         private Transaction selectedTransction;
         public string name;
@@ -65,9 +72,12 @@ namespace Flipping.ViewModels
 
             if (SoldAt > 0)
             {
-                selectedTransction.SoldAt = SoldAt;
+                newTransaction.SoldAt = SoldAt;
             }
             selectedTransction = newTransaction;
+
+            _transactionService.SaveToDevice(newTransaction);
+
         }
     }
 }

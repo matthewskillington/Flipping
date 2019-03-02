@@ -12,49 +12,36 @@ namespace Flipping.ViewModels
     class MainPageViewModel : BindableObject
     {
 
-        public INavigationService navigationService;
+        private INavigationService navigationService;
+        public ITransactionService transactionService;
 
-        public MainPageViewModel(INavigationService _navigationService)
+        public MainPageViewModel(INavigationService _navigationService, ITransactionService _transactionService)
         {
             navigationService = _navigationService;
+            transactionService = _transactionService;
+            PopulateTransactions();
         }
 
-        public ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>
-        {
-            new Transaction("Combat Potion(2)", 1000, 390, 415),
-            new Transaction("Magic Potion(4)", 5000, 5, 25)
-        };
+        public ObservableCollection<Transaction> transactions;
 
-        
-
-        public ICommand AddCommand => new Command(SaveToDevice);
+        public ICommand AddCommand => new Command(OpenNewModal);
 
         public bool isSaving = false;
 
-        public async void SaveToDevice()
+        public async void OpenNewModal()
         {
             if (isSaving)
             {
                 return;
             }
-
             isSaving = true;
             await navigationService.CreateModal<AddTransactionModalViewModel>();
-
-            var x = 0;
-            foreach(Transaction transaction in transactions)
-            {
-                string[] values = new string[]
-                {
-                    transactions[x].Name,
-                    transactions[x].Amount.ToString(),
-                    transactions[x].BroughtAt.ToString(),
-                    transactions[x].SoldAt.ToString()
-                };
-                Application.Current.Properties[x.ToString()] =  values;
-                x++;
-            }
             isSaving = false;
+        }
+
+        public void PopulateTransactions()
+        {
+            transactions = transactionService.GetAll();
         }
     }
 }

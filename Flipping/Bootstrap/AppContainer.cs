@@ -18,6 +18,7 @@ namespace Flipping.Bootstrap
             builder.RegisterType<AddTransactionModalViewModel>();
             //Services
             builder.RegisterType<NavigationService>().As<INavigationService>();
+            builder.RegisterType<TransactionService>().As<ITransactionService>();
 
             _container = builder.Build();
         }

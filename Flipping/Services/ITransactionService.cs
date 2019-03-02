@@ -8,7 +8,8 @@ namespace Flipping.Services
 {
     public interface ITransactionService
     {
+        void SaveToDevice(ObservableCollection<Transaction> transactions);
+        void SaveToDevice(Transaction transaction);
         ObservableCollection<Transaction> GetAll();
-        
     }
 }
