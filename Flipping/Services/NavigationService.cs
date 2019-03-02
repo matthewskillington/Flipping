@@ -32,6 +32,11 @@ namespace Flipping.Services
             await CurrentApplication.MainPage.Navigation.PushModalAsync(page);
         }
 
+        public void ReloadMainPage()
+        {
+            Application.Current.MainPage = new MainPage();
+        }
+
         public async Task RemoveModal()
         {
             await CurrentApplication.MainPage.Navigation.PopModalAsync();

@@ -7,5 +7,6 @@ namespace Flipping.Services
     {
         Task CreateModal<T>();
         Task RemoveModal();
+        void ReloadMainPage();
     }
 }

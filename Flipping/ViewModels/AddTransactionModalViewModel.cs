@@ -80,6 +80,7 @@ namespace Flipping.ViewModels
 
             transactionService.SaveToDevice(newTransaction);
             navigationService.RemoveModal();
+            navigationService.ReloadMainPage();
         }
     }
 }

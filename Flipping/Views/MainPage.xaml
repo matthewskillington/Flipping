@@ -30,6 +30,5 @@
         </Grid>
 
         <Button Text="Add new Flip" Command="{Binding AddCommand}"></Button>
-        <Button Text="Update Flips" Command="{Binding UpdateCommand}"></Button>
     </StackLayout>
 </ContentPage>
