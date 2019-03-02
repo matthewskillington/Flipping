@@ -10,11 +10,13 @@ namespace Flipping.ViewModels
 {
     class AddTransactionModalViewModel : BindableObject
     {
-        public ITransactionService _transactionService;
+        public ITransactionService transactionService;
+        public INavigationService navigationService;
 
-        public AddTransactionModalViewModel(ITransactionService transactionService)
+        public AddTransactionModalViewModel(ITransactionService _transactionService, INavigationService _navigationService)
         {
-            _transactionService = transactionService;
+            transactionService = _transactionService;
+            navigationService = _navigationService;
         }
 
         private Transaction selectedTransction;
@@ -76,8 +78,8 @@ namespace Flipping.ViewModels
             }
             selectedTransction = newTransaction;
 
-            _transactionService.SaveToDevice(newTransaction);
-
+            transactionService.SaveToDevice(newTransaction);
+            navigationService.RemoveModal();
         }
     }
 }

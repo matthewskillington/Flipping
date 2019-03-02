@@ -31,6 +31,11 @@ namespace Flipping.Services
             var page = CreatePage(typeof(TViewModel));
             await CurrentApplication.MainPage.Navigation.PushModalAsync(page);
         }
+
+        public async Task RemoveModal()
+        {
+            await CurrentApplication.MainPage.Navigation.PopModalAsync();
+        }
         
         private Page CreatePage(Type type)
         {
