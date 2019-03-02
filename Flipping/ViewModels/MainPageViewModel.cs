@@ -41,6 +41,12 @@ namespace Flipping.ViewModels
 
         public void PopulateTransactions()
         {
+            ObservableCollection<Transaction> transac1 = new ObservableCollection<Transaction>
+            {
+                new Transaction("cb pot", 100, 230, 250),
+                new Transaction("mage pot", 100, 200, 250)
+            };
+            transactionService.SaveToDevice(transac1);
             transactions = transactionService.GetAll();
         }
     }
