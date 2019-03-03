@@ -28,27 +28,60 @@ namespace Flipping.Views
             {
                 grid.Children.Add(new Label
                 {
-                    Text = transaction.Name,
-                    TextColor = Color.Cyan,
+                    Text = transaction.Amount + " x " + transaction.Name,
                 }, 0, row);
                 grid.Children.Add(new Label
                 {
-                    Text = transaction.Amount.ToString()
+                    Text = IntToGp(transaction.BroughtAt)
                 }, 1, row);
                 grid.Children.Add(new Label
                 {
-                    Text = transaction.BroughtAt.ToString() + "gp"
+                    Text = IntToGp(transaction.SoldAt)
                 }, 2, row);
                 grid.Children.Add(new Label
                 {
-                    Text = transaction.SoldAt.ToString() + "gp"
+                    Text = IntToGp(transaction.Profit),
+                    TextColor = transaction.Profit > 0 ? Color.Green : Color.Red
+
                 }, 3, row);
-                grid.Children.Add(new Label
-                {
-                    Text = transaction.Profit.ToString() + "gp"
-                }, 4, row);
                 row++;
 
+            }
+
+            string IntToGp(int number)
+            {
+                bool positive;
+                if (number < 0)
+                {
+                    positive = false;
+                    number = number * -1;
+                }
+                else
+                {
+                    positive = true;
+                }
+
+                if (number >= 10000000)
+                {
+                    if (positive)
+                    {
+                        return (number / 1000000).ToString() + "M";
+                    }
+                    return ((number * -1) / 1000000).ToString() + "M";
+                }
+                if (number >= 100000)
+                {
+                    if (positive)
+                    {
+                        return (number / 1000).ToString() + "K";
+                    }
+                    return ((number * -1)/ 1000).ToString() + "K";
+                }
+                if (positive)
+                {
+                    return number.ToString();
+                }
+                return (number * -1).ToString();
             }
         }
     }

@@ -9,24 +9,27 @@
         x:Name="layout">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <BoxView Color="#666" Grid.ColumnSpan="5" Grid.Row="0"/>
-            <Label Text="Item Name" Grid.Row="0" Grid.Column="0" TextColor="White" BackgroundColor="#666" Margin="5"></Label>
-            <Label Text="Quantity" Grid.Row="0" Grid.Column="1" TextColor="White" BackgroundColor="#666" Margin="5"></Label>
-            <Label Text="Price each" Grid.Row="0" Grid.Column="2" TextColor="White" BackgroundColor="#666" Margin="5"></Label>
-            <Label Text="Sold each" Grid.Row="0" Grid.Column="3" TextColor="White" BackgroundColor="#666" Margin="5"></Label>
-            <Label Text="Profit/Loss" Grid.Row="0" Grid.Column="4" TextColor="White" BackgroundColor="#666" Margin="5"></Label>
+            <BoxView Color="#666" Grid.ColumnSpan="4" Grid.Row="0"/>
+            <Label Text="Item Name" Grid.Row="0" Grid.Column="0" TextColor="White" BackgroundColor="#666" Margin="5" HorizontalTextAlignment="Start"></Label>
+            <Label Text="Price each" Grid.Row="0" Grid.Column="1" TextColor="White" BackgroundColor="#666" Margin="5" HorizontalTextAlignment="Start"></Label>
+            <Label Text="Sold each" Grid.Row="0" Grid.Column="2" TextColor="White" BackgroundColor="#666" Margin="5" HorizontalTextAlignment="Start"></Label>
+            <Label Text="Profit/Loss" Grid.Row="0" Grid.Column="3" TextColor="White" BackgroundColor="#666" Margin="5" HorizontalTextAlignment="Start"></Label>
         </Grid>
 
         <Grid 
             x:Name="grid"
             Padding="5">
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
         </Grid>
 
         <Button Text="Add new Flip" Command="{Binding AddCommand}"></Button>
