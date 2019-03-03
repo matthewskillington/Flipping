@@ -23,10 +23,15 @@
                 Text="Enter Sold Price (if applicable)"></Label>
             <Entry
                  Text="{Binding SoldAt, Mode=TwoWay}"></Entry>
-
+            <Label 
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"></Label>
             <Button
                 Text="Submit"
                 Command="{Binding SubmitCommand}"></Button>
+            <Button
+                Text="Cancel"
+                Command="{Binding CancelCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

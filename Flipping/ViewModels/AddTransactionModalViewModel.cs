@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Flipping.ViewModels
 {
-    class AddTransactionModalViewModel : BindableObject
+    public class AddTransactionModalViewModel : BindableObject
     {
         public ITransactionService transactionService;
         public INavigationService navigationService;
@@ -20,6 +20,15 @@ namespace Flipping.ViewModels
         }
 
         private Transaction selectedTransction;
+        private string errormessage;
+        public string ErrorMessage {
+            get => errormessage;
+            set
+            {
+                errormessage = value;
+                OnPropertyChanged();
+            }
+        }
         public string name;
         public string Name {
             get => name;
@@ -59,14 +68,41 @@ namespace Flipping.ViewModels
             }
         }
 
-        public AddTransactionModalViewModel()
-        {
 
+        public ICommand SubmitCommand => new Command(ValidateTransaction);
+        public ICommand CancelCommand => new Command(CancelAdd);
+
+        private void CancelAdd()
+        {
+            navigationService.RemoveModal();
         }
 
-        public ICommand SubmitCommand => new Command(ConstructTransaction);
-
-        
+        private void ValidateTransaction()
+        {
+            if (Name == null)
+            {
+                ErrorMessage = "You cannot leave the name field blank";
+                return;
+            }
+            if (Amount <= 0)
+            {
+                ErrorMessage = "Amount must be greater than 0";
+                return;
+            }
+            if (BroughtAt <= 0)
+            {
+                ErrorMessage = "Price Brought for must be greater than 0";
+                return;
+            }
+            if (Amount > 2147000000 || BroughtAt > 2147000000){
+                ErrorMessage = "You cannot hold or sell for more than 2147M";
+                return;
+            }
+            else
+            {
+                ConstructTransaction();
+            }
+        }
 
         private void ConstructTransaction()
         {

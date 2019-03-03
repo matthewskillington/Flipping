@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Flipping.ViewModels
 {
-    class MainPageViewModel : BindableObject
+    public class MainPageViewModel : BindableObject
     {
 
         private INavigationService navigationService;
@@ -22,7 +22,7 @@ namespace Flipping.ViewModels
             PopulateTransactions();
         }
 
-        public ObservableCollection<Transaction> _transactions;
+        private ObservableCollection<Transaction> _transactions;
         public ObservableCollection<Transaction> transactions
         {
             get => _transactions;
