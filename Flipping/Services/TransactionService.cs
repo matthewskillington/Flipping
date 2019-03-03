@@ -14,31 +14,16 @@ namespace Flipping.Services
 
         public void SaveToDevice(ObservableCollection<Transaction> transactions)
         {
-            var x = 0;
             foreach (Transaction transaction in transactions)
             {
-                string[] values = new string[]
-                {
-                    transaction.Name,
-                    transaction.Amount.ToString(),
-                    transaction.BroughtAt.ToString(),
-                    transaction.SoldAt.ToString()
-                };
-                Application.Current.Properties[x.ToString()] = values;
-                x++;
+                SaveToDevice(transaction);
             }
         }
         
         public void SaveToDevice(Transaction transaction)
         {
-            string[] values = new string[]
-                {
-                    transaction.Name,
-                    transaction.Amount.ToString(),
-                    transaction.BroughtAt.ToString(),
-                    transaction.SoldAt.ToString()
-                };
-            Application.Current.Properties[transaction.Name] = values;
+            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}";
+            Application.Current.Properties[transaction.Name] = objectToSave;
         }
 
         public ObservableCollection<Transaction> GetAll()
@@ -52,9 +37,7 @@ namespace Flipping.Services
 
             foreach(KeyValuePair<string, object> keyValuePair in keyValuePairs)
             {
-                string[] arr = ((IEnumerable)keyValuePair.Value).Cast<object>()
-                    .Select(x => x.ToString())
-                    .ToArray();
+                string[] arr = keyValuePair.Value.ToString().Split(',');
                 int.TryParse(arr[1], out int Amount);
                 int.TryParse(arr[2], out int BroughtAt);
                 int.TryParse(arr[3], out int SoldAt);
