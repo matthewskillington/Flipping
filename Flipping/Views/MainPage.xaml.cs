@@ -26,10 +26,15 @@ namespace Flipping.Views
             var row = 0;
             foreach (Transaction transaction in vm.transactions)
             {
-                grid.Children.Add(new Label
+                Label label = new Label
                 {
                     Text = transaction.Amount + " x " + transaction.Name,
-                }, 0, row);
+                };
+                label.GestureRecognizers.Add(new TapGestureRecognizer()
+                {
+                    Command = vm.EditCommand
+                });
+                grid.Children.Add(label, 0, row);
                 grid.Children.Add(new Label
                 {
                     Text = IntToGp(transaction.BroughtAt)

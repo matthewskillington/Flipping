@@ -35,6 +35,7 @@ namespace Flipping.ViewModels
 
         public ICommand AddCommand => new Command(OpenNewModal);
         public ICommand UpdateCommand => new Command(PopulateTransactions);
+        public ICommand EditCommand => new Command(OpenNewModal);
 
         public bool isSaving = false;
 
