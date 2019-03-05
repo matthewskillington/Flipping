@@ -50,9 +50,9 @@ namespace Flipping.ViewModels
             isSaving = false;
         }
 
-        private void EditModal(Transaction transaction)
+        private async void EditModal(Transaction transaction)
         {
-            Console.WriteLine(transaction.ToString());
+            await navigationService.CreateModal<EditTransactionModalViewModel>();
         }
 
         public void PopulateTransactions()

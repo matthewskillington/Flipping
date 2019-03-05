@@ -23,6 +23,7 @@ namespace Flipping.Services
         private void CreatePageViewModelMappings()
         {
             _mappings.Add(typeof(AddTransactionModalViewModel), typeof(AddTransactionModal));
+            _mappings.Add(typeof(EditTransactionModalViewModel), typeof(EditTransactionModal));
             _mappings.Add(typeof(MainPageViewModel), typeof(MainPage));
         }
 

@@ -7,31 +7,8 @@
     <ContentPage.Content>
         <StackLayout
             Padding="10">
-            <Label
-                Text="Enter Item Name"></Label>
-            <Entry
-                 Text="{Binding Name, Mode=TwoWay}"></Entry>
-            <Label
-                Text="Enter Amount"></Label>
-            <Entry
-                 Text="{Binding Amount, Mode=TwoWay}"></Entry>
-            <Label
-                Text="Enter Price Paid Each"></Label>
-            <Entry
-                 Text="{Binding BroughtAt, Mode=TwoWay}"></Entry>
-            <Label
-                Text="Enter Sold Price (if applicable)"></Label>
-            <Entry
-                 Text="{Binding SoldAt, Mode=TwoWay}"></Entry>
-            <Label 
-                Text="{Binding ErrorMessage}"
-                TextColor="Red"></Label>
-            <Button
-                Text="Submit"
-                Command="{Binding SubmitCommand}"></Button>
-            <Button
-                Text="Cancel"
-                Command="{Binding CancelCommand}"></Button>
+            
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -31,6 +31,13 @@ namespace Flipping.Services
             return KeyPairToObservable(Application.Current.Properties);
         }
 
+        public Transaction GetByName(string name)
+        {
+            ObservableCollection<Transaction> all = GetAll();
+
+            return all.Single(x => x.Name == name);
+        }
+
         public ObservableCollection<Transaction> KeyPairToObservable(IDictionary<string, object> keyValuePairs)
         {
             ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>();

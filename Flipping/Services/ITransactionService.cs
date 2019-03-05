@@ -11,5 +11,6 @@ namespace Flipping.Services
         void SaveToDevice(ObservableCollection<Transaction> transactions);
         void SaveToDevice(Transaction transaction);
         ObservableCollection<Transaction> GetAll();
+        Transaction GetByName(string name);
     }
 }
