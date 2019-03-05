@@ -35,7 +35,7 @@ namespace Flipping.ViewModels
 
         public ICommand AddCommand => new Command(OpenNewModal);
         public ICommand UpdateCommand => new Command(PopulateTransactions);
-        public ICommand EditCommand => new Command(OpenNewModal);
+        public ICommand EditCommand => new Command<Transaction>(EditModal);
 
         public bool isSaving = false;
 
@@ -48,6 +48,11 @@ namespace Flipping.ViewModels
             isSaving = true;
             await navigationService.CreateModal<AddTransactionModalViewModel>();
             isSaving = false;
+        }
+
+        private void EditModal(Transaction transaction)
+        {
+            Console.WriteLine(transaction.ToString());
         }
 
         public void PopulateTransactions()

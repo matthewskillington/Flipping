@@ -26,31 +26,60 @@ namespace Flipping.Views
             var row = 0;
             foreach (Transaction transaction in vm.transactions)
             {
-                Label label = new Label
+                // Name Label
+                Label label1 = new Label
                 {
                     Text = transaction.Amount + " x " + transaction.Name,
                 };
-                label.GestureRecognizers.Add(new TapGestureRecognizer()
-                {
-                    Command = vm.EditCommand
-                });
-                grid.Children.Add(label, 0, row);
-                grid.Children.Add(new Label
+
+                // Brought at label
+                Label label2 = new Label
                 {
                     Text = IntToGp(transaction.BroughtAt)
-                }, 1, row);
-                grid.Children.Add(new Label
+                };
+
+                // Sold at label
+                Label label3 = new Label
                 {
                     Text = IntToGp(transaction.SoldAt)
-                }, 2, row);
-                grid.Children.Add(new Label
+                };
+
+                // Profit label
+                Label label4 = new Label
                 {
                     Text = IntToGp(transaction.Profit),
                     TextColor = transaction.Profit > 0 ? Color.Green : Color.Red
+                };
 
-                }, 3, row);
+                
+                Label[] labels = new Label[]
+                {
+                    label1,
+                    label2,
+                    label3,
+                    label4
+                };
+                // Add a gesture recogniser for each label to pass information to edit
+                // Then add the labels to the grid
+                var x = 0;
+                foreach(Label label in labels)
+                {
+                    label.GestureRecognizers.Add(new TapGestureRecognizer()
+                    {
+                        Command = vm.EditCommand,
+                        CommandParameter = transaction
+                    });
+                    grid.Children.Add(label, x, row);
+                    x++;
+                }
+
+                /* Add the created labels to the grid
+                grid.Children.Add(label1, 0, row);
+                grid.Children.Add(label2, 1, row);
+                grid.Children.Add(label3, 2, row);
+                grid.Children.Add(label4, 3, row);*/
+
                 row++;
-
             }
 
             string IntToGp(int number)
