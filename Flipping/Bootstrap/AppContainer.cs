@@ -16,6 +16,7 @@ namespace Flipping.Bootstrap
             //ViewModels
             builder.RegisterType<MainPageViewModel>();
             builder.RegisterType<AddTransactionModalViewModel>();
+            builder.RegisterType<EditTransactionModalViewModel>();
             //Services
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<TransactionService>().As<ITransactionService>();
