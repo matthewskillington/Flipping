@@ -9,7 +9,8 @@ namespace Flipping.Services
     public interface ITransactionService
     {
         void SaveToDevice(ObservableCollection<Transaction> transactions);
-        void SaveToDevice(Transaction transaction);
+        void SaveToDeviceNew(Transaction transaction);
+        void SaveToDeviceEdit(Transaction transaction);
         ObservableCollection<Transaction> GetAll();
         Transaction GetByName(string name);
     }

@@ -19,7 +19,7 @@ namespace Flipping.ViewModels
             navigationService = _navigationService;
         }
 
-        private Transaction selectedTransction;
+        public Transaction selectedTransction;
         private string errormessage;
         public string ErrorMessage {
             get => errormessage;
@@ -114,7 +114,7 @@ namespace Flipping.ViewModels
             }
             selectedTransction = newTransaction;
 
-            transactionService.SaveToDevice(newTransaction);
+            transactionService.SaveToDeviceNew(newTransaction);
             navigationService.RemoveModal();
             navigationService.ReloadMainPage();
         }

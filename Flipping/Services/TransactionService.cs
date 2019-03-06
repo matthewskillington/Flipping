@@ -16,14 +16,27 @@ namespace Flipping.Services
         {
             foreach (Transaction transaction in transactions)
             {
-                SaveToDevice(transaction);
+                SaveToDeviceNew(transaction);
             }
         }
         
-        public void SaveToDevice(Transaction transaction)
+        public void SaveToDeviceNew(Transaction transaction)
         {
             string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}";
             Application.Current.Properties[transaction.Name] = objectToSave;
+        }
+
+        public void SaveToDeviceEdit(Transaction transaction)
+        {
+            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}";
+            Application.Current.Properties[transaction.Name] = objectToSave;
+        }
+
+        public void RemoveFromDevice(Transaction transaction)
+        {
+            Transaction toDelete;
+            toDelete = GetByName(transaction.Name);
+            Application.Current.Properties[transaction.Name] = null;
         }
 
         public ObservableCollection<Transaction> GetAll()

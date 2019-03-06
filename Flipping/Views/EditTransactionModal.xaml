@@ -28,7 +28,7 @@
                 TextColor="Red"></Label>
             <Button
                 Text="Submit"
-                Command="{Binding SubmitCommand}"></Button>
+                Command="{Binding SubmitEditCommand}"></Button>
             <Button
                 Text="Cancel"
                 Command="{Binding CancelCommand}"></Button>
