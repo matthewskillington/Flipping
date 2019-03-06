@@ -25,7 +25,10 @@ namespace Flipping.ViewModels
 
         private void InitializeFields(Transaction transaction)
         {
-
+            Name = transaction.Name;
+            Amount = transaction.Amount;
+            BroughtAt = transaction.BroughtAt;
+            SoldAt = transaction.SoldAt;
         }
     }
 }
