@@ -1,4 +1,5 @@
-﻿using Flipping.ViewModels;
+﻿using Flipping.Bootstrap;
+using Flipping.ViewModels;
 using Flipping.Views;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Flipping.Services
 
         public async Task CreateModal<TViewModel>()
         {
-            var page = CreatePage(typeof(TViewModel));
+            var page = CreateAndBindPage(typeof(TViewModel));
             await CurrentApplication.MainPage.Navigation.PushModalAsync(page);
         }
 
@@ -52,6 +53,24 @@ namespace Flipping.Services
                 throw new Exception($"Mapping type for {type} is null in the NavigationService");
             }
             Page page = Activator.CreateInstance(pageType) as Page;
+            return page;
+        }
+
+        private Page CreateAndBindPage(Type type)
+        {
+            var pageType = GetPageTypeForViewModel(type);
+
+            if (pageType == null)
+            {
+                throw new Exception($"Mapping type for {type} is null in the NavigationService");
+            }
+
+            var page = Activator.CreateInstance(pageType) as Page;
+
+            var vm = AppContainer.Resolve(type);
+
+            page.BindingContext = vm;
+
             return page;
         }
 

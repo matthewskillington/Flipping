@@ -53,6 +53,7 @@ namespace Flipping.ViewModels
         private async void EditModal(Transaction transaction)
         {
             await navigationService.CreateModal<EditTransactionModalViewModel>();
+            MessagingCenter.Send(this, "EditingTransaction", transaction);
         }
 
         public void PopulateTransactions()

@@ -3,26 +3,29 @@ using Flipping.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Flipping.ViewModels
 {
-    public class EditTransactionModalViewModel //: AddTransactionModalViewModel
+    public class EditTransactionModalViewModel : AddTransactionModalViewModel
     {
         public EditTransactionModalViewModel(
-            //ITransactionService _transactionService,
-            //INavigationService _navigationService,
-            //string name
-        ) //: base(_transactionService, _navigationService)
+            ITransactionService _transactionService,
+            INavigationService _navigationService
+        ): base(_transactionService, _navigationService)
         {
-            //Name = name;
-            //GetTransaction();
+            InitializeMessenger();
         }
 
-        /*private void GetTransaction()
+        private void InitializeMessenger()
         {
-            editingTransaction = transactionService.GetByName(Name);
-        }*/
+            MessagingCenter.Subscribe<MainPageViewModel, Transaction>(this, "EditingTransaction",
+            (mainViewModel, transaction) => InitializeFields(transaction));
+        }
 
-        //Transaction editingTransaction;
+        private void InitializeFields(Transaction transaction)
+        {
+
+        }
     }
 }
