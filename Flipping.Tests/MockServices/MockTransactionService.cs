@@ -13,10 +13,20 @@ namespace Flipping.Tests.MockServices
         {
 
         }
-        public void SaveToDevice(Transaction transaction)
+        public void SaveToDeviceNew(Transaction transaction)
         {
 
         }
+        public void SaveToDeviceEdit(Transaction transaction)
+        {
+
+        }
+
+        public Transaction GetByName(string name)
+        {
+            return new Transaction("something", 0, 0, 0);
+        }
+
         public ObservableCollection<Transaction> GetAll()
         {
             return new ObservableCollection<Transaction>
