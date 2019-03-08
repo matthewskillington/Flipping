@@ -14,6 +14,7 @@ namespace Flipping.Models
             {
                 Profit = (soldAt - broughtAt) * amount; 
             }
+            Id = "";
         }
 
         public string Id { get; set; }
