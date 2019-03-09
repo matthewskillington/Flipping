@@ -14,7 +14,6 @@
     <PackageReference Include="Autofac" Version="4.9.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Bootstrap\" />
   </ItemGroup>
   <ItemGroup>
