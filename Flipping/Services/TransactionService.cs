@@ -22,14 +22,15 @@ namespace Flipping.Services
         
         public void SaveToDeviceNew(Transaction transaction)
         {
-            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}";
-            Application.Current.Properties[transaction.Name] = objectToSave;
+
+            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}, {transaction.Id.ToString()}";
+            Application.Current.Properties[transaction.Id.ToString()] = objectToSave;
         }
 
         public void SaveToDeviceEdit(Transaction transaction)
         {
-            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}";
-            Application.Current.Properties[transaction.Name] = objectToSave;
+            string objectToSave = $"{transaction.Name},{transaction.Amount.ToString()},{transaction.BroughtAt.ToString()},{transaction.SoldAt.ToString()}, {transaction.Id.ToString()}";
+            Application.Current.Properties[transaction.Id.ToString()] = objectToSave;
         }
 
         public void RemoveFromDevice(Transaction transaction)
@@ -58,10 +59,18 @@ namespace Flipping.Services
             foreach(KeyValuePair<string, object> keyValuePair in keyValuePairs)
             {
                 string[] arr = keyValuePair.Value.ToString().Split(',');
+                string Name = arr[0];
                 int.TryParse(arr[1], out int Amount);
                 int.TryParse(arr[2], out int BroughtAt);
                 int.TryParse(arr[3], out int SoldAt);
-                transactions.Add(new Transaction(keyValuePair.Key, Amount, BroughtAt, SoldAt));
+                try
+                {
+                    transactions.Add(new Transaction(Name, Amount, BroughtAt, SoldAt) { Id = new Guid(arr[4]) });
+                }
+                catch
+                {
+                    transactions.Add(new Transaction(Name, Amount, BroughtAt, SoldAt));
+                }
             }
             return transactions;
         }

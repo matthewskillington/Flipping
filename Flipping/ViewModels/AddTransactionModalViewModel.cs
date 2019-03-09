@@ -29,6 +29,17 @@ namespace Flipping.ViewModels
                 OnPropertyChanged();
             }
         }
+        public Guid id;
+        public Guid Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string name;
         public string Name {
             get => name;

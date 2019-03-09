@@ -34,11 +34,13 @@ namespace Flipping.ViewModels
             Amount = transaction.Amount;
             BroughtAt = transaction.BroughtAt;
             SoldAt = transaction.SoldAt;
+            Id = transaction.Id;
+            
         }
 
         private void EditTransaction()
         {
-            var newTransaction = new Transaction(Name, Amount, BroughtAt);
+            var newTransaction = new Transaction(Name, Amount, BroughtAt) { Id = Id };
 
             if (SoldAt > 0)
             {
