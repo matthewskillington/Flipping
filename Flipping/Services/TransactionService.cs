@@ -33,11 +33,11 @@ namespace Flipping.Services
             Application.Current.Properties[transaction.Id.ToString()] = objectToSave;
         }
 
-        public void RemoveFromDevice(Transaction transaction)
+        public void DeleteById(Guid id)
         {
             Transaction toDelete;
-            toDelete = GetByName(transaction.Name);
-            Application.Current.Properties[transaction.Name] = null;
+            toDelete = GetById(id);
+            Application.Current.Properties.Remove(id.ToString());
         }
 
         public ObservableCollection<Transaction> GetAll()
@@ -50,6 +50,13 @@ namespace Flipping.Services
             ObservableCollection<Transaction> all = GetAll();
 
             return all.Single(x => x.Name == name);
+        }
+
+        public Transaction GetById(Guid id)
+        {
+            ObservableCollection<Transaction> all = GetAll();
+
+            return all.Single(x => x.Id == id);
         }
 
         public ObservableCollection<Transaction> KeyPairToObservable(IDictionary<string, object> keyValuePairs)

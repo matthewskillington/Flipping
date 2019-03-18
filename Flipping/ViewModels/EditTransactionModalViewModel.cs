@@ -27,6 +27,8 @@ namespace Flipping.ViewModels
 
         public ICommand SubmitEditCommand => new Command(EditTransaction);
 
+        public ICommand DeleteCommand => new Command(DeleteTransaction);
+
         private void InitializeFields(Transaction transaction)
         {
             selectedTransction = transaction;
@@ -36,6 +38,13 @@ namespace Flipping.ViewModels
             SoldAt = transaction.SoldAt;
             Id = transaction.Id;
             
+        }
+
+        private void DeleteTransaction()
+        {
+            transactionService.DeleteById(Id);
+            navigationService.RemoveModal();
+            navigationService.ReloadMainPage();
         }
 
         private void EditTransaction()

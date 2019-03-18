@@ -20,10 +20,9 @@ namespace Flipping.Tests
             ObservableCollection<Transaction> results = vm.transactions;
             ObservableCollection<Transaction> expected = new ObservableCollection<Transaction>{
                 new Transaction("Dragon Longsword", 70, 59001, 60500)
-            };   
+            };
             Assert.Equal(results[0].Name, expected[0].Name);
         }
-
 
     }
 }

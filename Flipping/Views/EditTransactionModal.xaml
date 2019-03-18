@@ -32,7 +32,14 @@
             <Button
                 Text="Cancel"
                 Command="{Binding CancelCommand}"></Button>
-            
+            <Button
+                Text="Delete item"
+                BackgroundColor="Transparent"
+                TextColor="Red"
+                VerticalOptions="EndAndExpand"
+                Command="{Binding DeleteCommand}">
+            </Button>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

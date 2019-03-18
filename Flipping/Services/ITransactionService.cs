@@ -11,6 +11,7 @@ namespace Flipping.Services
         void SaveToDevice(ObservableCollection<Transaction> transactions);
         void SaveToDeviceNew(Transaction transaction);
         void SaveToDeviceEdit(Transaction transaction);
+        void DeleteById(Guid id);
         ObservableCollection<Transaction> GetAll();
         Transaction GetByName(string name);
     }
