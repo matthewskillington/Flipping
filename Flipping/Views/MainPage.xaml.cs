@@ -73,12 +73,6 @@ namespace Flipping.Views
                     x++;
                 }
 
-                /* Add the created labels to the grid
-                grid.Children.Add(label1, 0, row);
-                grid.Children.Add(label2, 1, row);
-                grid.Children.Add(label3, 2, row);
-                grid.Children.Add(label4, 3, row);*/
-
                 row++;
             }
 

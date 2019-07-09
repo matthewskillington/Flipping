@@ -12,11 +12,15 @@ namespace Flipping.ViewModels
     {
         public ITransactionService transactionService;
         public INavigationService navigationService;
+        public IGrandExchangeService grandExchangeService;
 
-        public AddTransactionModalViewModel(ITransactionService _transactionService, INavigationService _navigationService)
+        public AddTransactionModalViewModel(ITransactionService _transactionService, 
+                                            INavigationService _navigationService,
+                                            IGrandExchangeService _grandExchangeService)
         {
             transactionService = _transactionService;
             navigationService = _navigationService;
+            grandExchangeService = _grandExchangeService;
         }
 
         public Transaction selectedTransction;
@@ -40,12 +44,15 @@ namespace Flipping.ViewModels
             }
         }
 
+        public string response;
+
         public string name;
         public string Name {
             get => name;
             set
             {
                 name = value;
+                //response = grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365").Result;
                 OnPropertyChanged();
             }
         }

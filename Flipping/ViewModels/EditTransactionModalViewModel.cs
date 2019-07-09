@@ -12,8 +12,9 @@ namespace Flipping.ViewModels
     {
         public EditTransactionModalViewModel(
             ITransactionService _transactionService,
-            INavigationService _navigationService
-        ): base(_transactionService, _navigationService)
+            INavigationService _navigationService,
+            IGrandExchangeService _grandExchangeService
+        ): base(_transactionService, _navigationService, _grandExchangeService)
         {
             InitializeMessenger();
         }
