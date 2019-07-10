@@ -20,6 +20,7 @@ namespace Flipping.Bootstrap
             //Services
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<TransactionService>().As<ITransactionService>();
+            builder.RegisterType<GrandExchangeService>().As<IGrandExchangeService>();
 
             _container = builder.Build();
         }

@@ -3,6 +3,7 @@ using Flipping.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -52,10 +53,11 @@ namespace Flipping.ViewModels
             set
             {
                 name = value;
-                //response = grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365").Result;
+                HandleSearchNameChange();
                 OnPropertyChanged();
             }
         }
+
         private int amount;
         public int Amount {
             get => amount;
@@ -135,6 +137,11 @@ namespace Flipping.ViewModels
             transactionService.SaveToDeviceNew(newTransaction);
             navigationService.RemoveModal();
             navigationService.ReloadMainPage();
+        }
+
+        private void HandleSearchNameChange()
+        {
+            response = grandExchangeService.Get("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
         }
     }
 }
