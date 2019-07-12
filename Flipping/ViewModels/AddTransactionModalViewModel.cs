@@ -1,5 +1,6 @@
 ﻿using Flipping.Models;
 using Flipping.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -45,15 +46,12 @@ namespace Flipping.ViewModels
             }
         }
 
-        public string response;
-
         public string name;
         public string Name {
             get => name;
             set
             {
                 name = value;
-                HandleSearchNameChange();
                 OnPropertyChanged();
             }
         }
@@ -84,6 +82,28 @@ namespace Flipping.ViewModels
             set
             {
                 soldAt = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RunescapeItem suggestedItem;
+        public RunescapeItem SuggestedItem
+        {
+            get => suggestedItem;
+            set
+            {
+                suggestedItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool displaySuggestions;
+        public bool DisplaySuggestions
+        {
+            get => displaySuggestions;
+            set
+            {
+                displaySuggestions = value;
                 OnPropertyChanged();
             }
         }
@@ -139,9 +159,22 @@ namespace Flipping.ViewModels
             navigationService.ReloadMainPage();
         }
 
-        private void HandleSearchNameChange()
+        public async Task HandleSearchNameChange()
         {
-            response = grandExchangeService.Get("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
+            if(Name.Length >= 1)
+            {
+                await grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
+                SuggestedItem = new RunescapeItem("", "", 5405, "Fish", "", 140);
+                DisplaySuggestions = true;
+            }
+            else
+            {
+                if (DisplaySuggestions)
+                {
+                    DisplaySuggestions = !DisplaySuggestions;
+                }
+            }
+            
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,17 +13,25 @@ namespace Flipping.Services
     {
         List<RunescapeItem> items = new List<RunescapeItem>();
 
-        public string Get(string uri)
+        public async Task<string> GetAsync(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                return reader.ReadToEnd();
+                using(var client = new HttpClient())
+                {
+                    var result = await client.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
+
+                    var content = await result.Content.ReadAsStringAsync();
+
+                    return content;
+
+                }
+            }
+            catch (Exception e)
+            {
+                return "Exception thrown" + e.ToString();
             }
         }
+
     }
 }

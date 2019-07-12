@@ -28,4 +28,16 @@ namespace Flipping.Models
         public string Description { get; set; }
         public int Price { get; set; }
     }
+
+    public class IdMatch
+    {
+        public IdMatch(string Id, string Name)
+        {
+            id = Id;
+            name = Name;
+        }
+
+        public string id { get; set; }
+        public string name { get; set; }
+    }
 }

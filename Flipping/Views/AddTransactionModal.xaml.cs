@@ -16,5 +16,10 @@ namespace Flipping.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        void Handle_TextChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ((dynamic)BindingContext).HandleSearchNameChange();
+        }
+    }
 }

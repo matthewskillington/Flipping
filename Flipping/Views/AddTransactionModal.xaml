@@ -12,7 +12,15 @@
             <Label
                 Text="Enter Item Name"></Label>
             <Entry
-                 Text="{Binding Name, Mode=TwoWay}"></Entry>
+                 Text="{Binding Name, Mode=TwoWay}"
+                 TextChanged="Handle_TextChanged"></Entry>
+            <StackLayout
+                IsVisible="{Binding DisplaySuggestions}">
+                <Label
+                    x:Name="ItemName"
+                    Text="{Binding SuggestedItem.Name}">
+                </Label>
+            </StackLayout>
             <Label
                 Text="Enter Amount"></Label>
             <Entry

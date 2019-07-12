@@ -8,6 +8,6 @@ namespace Flipping.Services
 {
     public interface IGrandExchangeService
     {
-        string Get(string uri);
+        Task<string> GetAsync(string uri);
     }
 }
