@@ -19,7 +19,7 @@ namespace Flipping.Services
             {
                 using(var client = new HttpClient())
                 {
-                    var result = await client.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
+                    var result = await client.GetAsync(uri);
 
                     var content = await result.Content.ReadAsStringAsync();
 

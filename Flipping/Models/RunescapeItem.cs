@@ -31,13 +31,7 @@ namespace Flipping.Models
 
     public class IdMatch
     {
-        public IdMatch(string Id, string Name)
-        {
-            id = Id;
-            name = Name;
-        }
-
-        public string id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

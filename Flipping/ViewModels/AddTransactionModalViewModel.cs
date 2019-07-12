@@ -3,6 +3,7 @@ using Flipping.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -163,7 +164,8 @@ namespace Flipping.ViewModels
         {
             if(Name.Length >= 1)
             {
-                await grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=365");
+                string response = await grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/items.json?category=1&alpha=a&page=1");
+                object deserializedItems = JsonConvert.DeserializeObject(response.items); 
                 SuggestedItem = new RunescapeItem("", "", 5405, "Fish", "", 140);
                 DisplaySuggestions = true;
             }
