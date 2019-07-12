@@ -17,7 +17,7 @@ namespace Flipping.ViewModels
         public INavigationService navigationService;
         public IGrandExchangeService grandExchangeService;
 
-        public AddTransactionModalViewModel(ITransactionService _transactionService, 
+        public AddTransactionModalViewModel(ITransactionService _transactionService,
                                             INavigationService _navigationService,
                                             IGrandExchangeService _grandExchangeService)
         {
@@ -135,7 +135,7 @@ namespace Flipping.ViewModels
                 ErrorMessage = "Price Brought for must be greater than 0";
                 return;
             }
-            if (Amount > 2147000000 || BroughtAt > 2147000000){
+            if (Amount > 2147000000 || BroughtAt > 2147000000) {
                 ErrorMessage = "You cannot hold or sell for more than 2147M";
                 return;
             }
@@ -162,11 +162,10 @@ namespace Flipping.ViewModels
 
         public async Task HandleSearchNameChange()
         {
-            if(Name.Length >= 1)
+            if (Name.Length >= 1)
             {
                 string response = await grandExchangeService.GetAsync("http://services.runescape.com/m=itemdb_oldschool/api/catalogue/items.json?category=1&alpha=a&page=1");
-                object deserializedItems = JsonConvert.DeserializeObject(response.items); 
-                SuggestedItem = new RunescapeItem("", "", 5405, "Fish", "", 140);
+                ResultList deserializedItems = JsonConvert.DeserializeObject<ResultList>(response);
                 DisplaySuggestions = true;
             }
             else
@@ -176,7 +175,12 @@ namespace Flipping.ViewModels
                     DisplaySuggestions = !DisplaySuggestions;
                 }
             }
-            
+
         }
+        public class ResultList {
+            public int Total { get; set; }
+            public List<RunescapeItem> Items { get; set; }
+        }
+
     }
 }
